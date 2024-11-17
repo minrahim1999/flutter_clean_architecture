@@ -1,6 +1,6 @@
 # Flutter Clean Architecture Example
 
-A Flutter project implementing Clean Architecture with comprehensive tooling and feature generation.
+A Flutter project implementing Clean Architecture with comprehensive tooling and feature generation, supporting both GMS (Google Mobile Services) and HMS (Huawei Mobile Services).
 
 ## 🏗️ Project Structure
 
@@ -10,26 +10,33 @@ lib/
 │   ├── bloc/              # Base BLoC classes
 │   ├── database/          # Database service
 │   ├── di/                # Dependency injection
-│   ├── error/            # Error handling
-│   ├── network/          # Network service
-│   ├── router/           # Navigation
-│   ├── theme/            # App theme
-│   └── utils/            # Utilities
-├── features/             # Feature modules
-│   ├── feature_name/     # Feature template
-│   │   ├── data/        # Data layer
-│   │   ├── domain/      # Domain layer
+│   ├── error/             # Error handling
+│   ├── network/           # Network service
+│   ├── router/            # Navigation
+│   ├── theme/             # App theme
+│   └── utils/             # Utilities
+├── features/              # Feature modules
+│   ├── feature_name/      # Feature template
+│   │   ├── data/         # Data layer
+│   │   ├── domain/       # Domain layer
 │   │   └── presentation/ # Presentation layer
-└── app.dart             # App entry point
+└── app.dart              # App entry point
+
+android/
+├── app/
+│   └── src/
+│       ├── gms/          # Google Mobile Services implementation
+│       ├── hms/          # Huawei Mobile Services implementation
+│       └── main/         # Common Android code
 
 tools/
-├── scripts/             # Development scripts
-│   ├── build.dart       # Build script
+├── scripts/              # Development scripts
+│   ├── build.dart        # Build script
 │   ├── create_feature.dart # Feature generator
 │   ├── rename_project.dart # Project renaming
-│   ├── run.dart        # Run script
-│   └── test.dart       # Test runner
-└── templates/          # Feature templates
+│   ├── run.dart         # Run script
+│   └── test.dart        # Test runner
+└── templates/           # Feature templates
 ```
 
 ## 🚀 Getting Started
@@ -44,9 +51,50 @@ git clone https://github.com/yourusername/flutter_clean_architecture.git
 flutter pub get
 ```
 
-3. Run the app:
+3. Run the app with specific flavor:
 ```bash
-dart tools/scripts/run.dart
+# For Google Mobile Services version
+flutter run --flavor gms -t lib/main_gms.dart
+
+# For Huawei Mobile Services version
+flutter run --flavor hms -t lib/main_hms.dart
+```
+
+## 📱 Build Flavors
+
+This project supports multiple build flavors for different distribution channels:
+
+### Android Flavors
+1. **GMS (Google Mobile Services)**
+   - Full Google services support
+   - Distributed through Google Play Store
+   - Build command:
+     ```bash
+     flutter build apk --flavor gms -t lib/main_gms.dart
+     ```
+
+2. **HMS (Huawei Mobile Services)**
+   - Full Huawei services support
+   - Distributed through Huawei AppGallery
+   - Build command:
+     ```bash
+     flutter build apk --flavor hms -t lib/main_hms.dart
+     ```
+
+### Flavor Configuration
+- Each flavor has its own:
+  - Application ID
+  - App name
+  - Icons
+  - Configuration files
+  - Service implementations
+
+### Flavor-Specific Code
+- Use conditional imports:
+```dart
+import 'package:myapp/services/map_service.dart'
+    if (dart.library.gms) 'package:myapp/services/gms_map_service.dart'
+    if (dart.library.hms) 'package:myapp/services/hms_map_service.dart';
 ```
 
 ## 📜 Available Scripts
@@ -64,34 +112,24 @@ After creating a feature, run the following command to generate JSON serializati
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
-This will generate:
-- JSON serialization code for models
-- Mock classes for tests
-- Other generated code
-
 ### Building
 Build the app for release:
 ```bash
-dart tools/scripts/build.dart [platform]
+# For Google Play Store
+dart tools/scripts/build.dart apk --flavor gms
+
+# For Huawei AppGallery
+dart tools/scripts/build.dart apk --flavor hms
 ```
-Platforms: apk, ios, web, windows, macos, linux
 
 ### Running
 Run the app in debug mode:
 ```bash
-dart tools/scripts/run.dart
-```
+# For GMS version
+dart tools/scripts/run.dart --flavor gms
 
-### Testing
-Run tests with coverage:
-```bash
-dart tools/scripts/test.dart
-```
-
-### Renaming Project
-Rename the project and update all necessary files:
-```bash
-dart tools/scripts/rename_project.dart new_project_name
+# For HMS version
+dart tools/scripts/run.dart --flavor hms
 ```
 
 ## 🏛️ Architecture

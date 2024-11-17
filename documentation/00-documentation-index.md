@@ -10,74 +10,96 @@ These numbered documents form the essential path through the documentation:
    - Prerequisites and Installation
    - Environment Setup
    - Initial Configuration
+   - Flavor configuration (GMS/HMS)
 
 2. [Architecture Overview](02-architecture.md)
    - Clean Architecture Principles
    - Project Structure
    - Dependency Management
+   - Service abstractions
 
 3. [Feature Development](03-feature-development.md)
    - Feature Creation Process
    - Component Implementation
    - Testing Guidelines
+   - Integration guidelines
 
 4. [State Management](04-state-management.md)
    - BLoC Pattern Implementation
    - State Handling
    - Event Processing
+   - Dependency injection
 
 5. [Testing Guide](05-testing.md)
    - Unit Testing
    - Widget Testing
    - Integration Testing
-   - Test Coverage
+   - Flavor-specific testing
 
 6. [Deployment Guide](06-deployment.md)
    - Android Release Process
    - iOS Release Process
    - CI/CD Setup
+   - Build configurations
 
 7. [Flavor Configuration](07-flavor-configuration.md)
    - Development Environment
    - Staging Environment
    - Production Environment
    - Custom Flavors
+   - GMS (Google Mobile Services)
+   - HMS (Huawei Mobile Services)
+   - Build variants
+   - Service implementations
 
 8. [Plugin Development](08-plugin-development.md)
    - Creating Custom Plugins
    - Platform Integration
    - Plugin Testing
    - Publishing Plugins
+   - Service abstraction
+   - Implementation patterns
 
 9. [Platform Integration](09-platform-integration.md)
    - Android Integration
    - iOS Integration
    - Web Support
    - Desktop Support
+   - Android configuration
+   - iOS setup
 
 10. [Security Guide](10-security-guide.md)
     - Authentication
     - Data Encryption
     - Secure Storage
     - API Security
+    - Best practices
+    - Platform security
 
 11. [Contributing Guide](11-contributing.md)
     - Code Style
     - Pull Request Process
     - Review Guidelines
     - Community Standards
+    - Development workflow
+    - Release process
 
 12. [Future Features](12-future-features.md)
     - Planned Features
     - Enhancement Proposals
     - Deprecation Plans
     - Migration Guides
+    - Roadmap
+    - Planned improvements
+    - Feature requests
+    - Version timeline
 
 13. [Troubleshooting](13-troubleshooting.md)
     - Common Issues
     - Solutions
     - Support Channels
     - FAQ
+    - Debug tips
 
 ## Additional Documentation
 
@@ -87,9 +109,9 @@ These documents provide supplementary information and detailed guides:
 - [ARCHITECTURE_PATTERNS](ARCHITECTURE_PATTERNS.md) - Detailed patterns and practices
 - [CODE_STYLE](CODE_STYLE.md) - Coding standards and style guide
 - [DEPENDENCY_MANAGEMENT](DEPENDENCY_MANAGEMENT.md) - Managing project dependencies
+- [TEST_CONVENTIONS](TEST_CONVENTIONS.md) - Testing standards and practices
 
 ### Testing & Quality
-- [TEST_CONVENTIONS](TEST_CONVENTIONS.md) - Testing standards and practices
 - [PERFORMANCE_GUIDE](14-performance-guide.md) - Performance optimization guide
 - [CODE_REVIEW](CODE_REVIEW.md) - Code review process and checklist
 

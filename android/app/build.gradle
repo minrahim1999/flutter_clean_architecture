@@ -41,6 +41,8 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        gms.java.srcDirs += 'src/gms/kotlin'
+        hms.java.srcDirs += 'src/hms/kotlin'
     }
 
     defaultConfig {
@@ -51,9 +53,32 @@ android {
         versionName flutterVersionName
     }
 
+    flavorDimensions "services"
+    
+    productFlavors {
+        gms {
+            dimension "services"
+            applicationId "com.myapp.gms"
+            resValue "string", "app_name", "My App GMS"
+        }
+        
+        hms {
+            dimension "services"
+            applicationId "com.myapp.hms"
+            resValue "string", "app_name", "My App HMS"
+        }
+    }
+
     buildTypes {
         release {
             signingConfig signingConfigs.debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
         }
     }
 
@@ -68,4 +93,12 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    
+    // GMS dependencies
+    gmsImplementation 'com.google.android.gms:play-services-base:18.2.0'
+    gmsImplementation 'com.google.android.gms:play-services-maps:18.2.0'
+    
+    // HMS dependencies
+    hmsImplementation 'com.huawei.hms:base:6.11.0.300'
+    hmsImplementation 'com.huawei.hms:maps:6.11.1.301'
 }
